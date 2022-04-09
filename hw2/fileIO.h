@@ -8,9 +8,27 @@
 
 class _FileIO{
 public:
-    void write(std::string fileName, std::string content) {
+    void write(std::string fileName, std::string content, std::string mode) {
         std::ofstream file;
-        file.open(fileName);
+        if(mode == "out") file.open(fileName,std::ios::out);
+        else if(mode == "app") file.open(fileName,std::ios::app);
+        else std::cout << "writes error\n";
+        file << content;
+        file.close();
+    };
+    void write(std::string fileName, double content, std::string mode) {
+        std::ofstream file;
+        if(mode == "out") file.open(fileName,std::ios::out);
+        else if(mode == "app") file.open(fileName,std::ios::app);
+        else std::cout << "writed error\n";
+        file << content;
+        file.close();
+    };
+    void write(std::string fileName, int content, std::string mode) {
+        std::ofstream file;
+        if(mode == "out") file.open(fileName,std::ios::out);
+        else if(mode == "app") file.open(fileName,std::ios::app);
+        else std::cout << "writei error\n";
         file << content;
         file.close();
     };

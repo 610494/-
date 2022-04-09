@@ -16,7 +16,7 @@ vector <string>_FileIO::cut(const string & input, char c) {
             if(tmp.size()) result.push_back(tmp);
             tmp = "";
         }
-        else if(int(input[i]) != 13){
+        else if(int(input[i]) != 13){//13 是換行
             //cout << "else: ";
             tmp.push_back(input[i]);
             //cout << tmp.size() << "\n";

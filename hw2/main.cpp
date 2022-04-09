@@ -5,6 +5,7 @@
 #include "fileIO.h"
 #include <vector>
 #include <string>
+#include <time.h>
 
 using namespace std;
 
@@ -90,8 +91,21 @@ int main() {
     }
     cout << "\n";
     */
+    //double t = (double)clock() / CLOCKS_PER_SEC;
     string output = "output.txt";
-    fileIO.write(output,ans.print());
+    fileIO.write(output,"Total run time = ","out");
+    fileIO.write(output,(double)clock() / CLOCKS_PER_SEC,"app");
+    fileIO.write(output," seconds.\nAn optimal solution has ","app");
+    fileIO.write(output,ans.path_size(),"app");
+    fileIO.write(output," moves:\n","app");
+    //, str = "Total run time = ";
+    //str += string(t);
+    //str += " seconds.\nAn optimal solution has ";
+    //str += string(ans.path_size());
+    //str += " moves:\n";
+    //str += ans.print();
+    //fileIO.write(output,str.c_str());
+    fileIO.write(output,ans.print(),"app");
     cout << "ans:" << ans.print() << "\n";
     return 0;
 }
