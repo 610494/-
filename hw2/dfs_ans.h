@@ -18,6 +18,13 @@ class _dfs_ans {
         bool is_sol() const { return sol; }
         void set_sol(bool b) {sol = b;}
         void path_pop();
+        int steps() { 
+            int sum = (size != 0);
+            for(int i=0;i<size;++i) {
+                if(path[i] == cut) ++sum;
+            }
+            return sum;
+        }
         std::string print() {return path;}
     private:
         bool sol;

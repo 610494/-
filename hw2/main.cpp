@@ -96,7 +96,7 @@ int main() {
     fileIO.write(output,"Total run time = ","out");
     fileIO.write(output,(double)clock() / CLOCKS_PER_SEC,"app");
     fileIO.write(output," seconds.\nAn optimal solution has ","app");
-    fileIO.write(output,ans.path_size(),"app");
+    fileIO.write(output,ans.steps(),"app");
     fileIO.write(output," moves:\n","app");
     //, str = "Total run time = ";
     //str += string(t);
