@@ -53,6 +53,7 @@ public:
     }
     std::vector <std::string> cut(const std::string &, char );
     int to_number(const std::string & );
+    std::string  to_string(int );
 private:
     
 

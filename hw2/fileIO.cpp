@@ -37,12 +37,24 @@ int _FileIO::to_number(const std::string &str) {
     int result = 0;
     for(int i = 0; i < str.size();++i) {
         if(str[i] < '0' || str[i] > '9') {
-            cout << "e:" << int(str[i]) << "r\n";
+            //cout << "e:" << int(str[i]) << "r\n";
             continue;
         }
         result *= 10;
         result += (str[i] - '0');
     }
-    cout << result << "\n";
+    //cout << result << "\n";
     return result;
+}
+
+std::string  _FileIO::to_string(int number) {
+    if(number == 0) return "0";
+    std::string str = "";
+    int size = 1000000000;
+    while(size) {
+        if(number / size) str += '0' + number % size;
+        number %= size;
+        size /= 10;
+    }
+    return str;
 }

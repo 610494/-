@@ -13,11 +13,11 @@ class _Board {
         _Board() 
         {
             max_num = w = h = 0;
-            for(int i = 0; i < 10; ++i) for(int j = 0;j<10;++j) board[i][j] = 0;
-            for(int i=0;i<4;++i) for(int j =0;j<10;++j) move[i][j] = 0;
-            for(int i=0;i<4;++i) for(int j =0;j<10;++j) for(int k=0;k<10;k++) move_board[i][j][k] = 0;
-            for(int i=0;i<10;++i) total[i] = 0;
-            limit = 5;
+            for(int i = 0; i < 21; ++i) for(int j = 0;j<21;++j) board[i][j] = 0;
+            for(int i=0;i<4;++i) for(int j =0;j<21;++j) move[i][j] = 0;
+            for(int i=0;i<4;++i) for(int j =0;j<21;++j) for(int k=0;k<21;k++) move_board[i][j][k] = 0;
+            for(int i=0;i<21;++i) total[i] = 0;
+            limit = 50;
         }
         int query_limit() const
         {
@@ -47,12 +47,41 @@ class _Board {
         {
             for(int i = 0; i < h;++i) {for(int j = 0; j < w;++j) cout << query_board(i,j) << " "; cout << "\n";}
         }
-        _dfs_ans IDS();
+        _dfs_ans IDA();
+        _dfs_ans IDA_start();
         int Count(int y, int x) const{return y*w+x;}
+        int g()const;
+        bool operator<(const _Board b) const{
+            return g() + path.steps() < b.g() + b.path.steps();
+        }
+        void generate();
     private:
-        int w, h, board[11][11], total[11], move[5][11], move_board[5][11][11], max_num, limit;
-        _dfs_ans _IDS(int , int, _dfs_ans);
+        int w, h, board[21][21], total[21], move[5][21], move_board[5][21][21], max_num, limit;
+        mutable int bit[21*21] = {};
+        _dfs_ans _IDA(int , int, _dfs_ans);
+        _dfs_ans _IDA_start(int );
+        _dfs_ans path;
         std::string F(_Board * ,int,int);
+        int lowbit(int n) const{
+            return n & (-n);
+        }
+        void change(int id, int k) const{
+            //cout << "c" << endl;
+            for (int i = id; i <= 21; i += lowbit(i)) {
+                //cout << "i:" << i << endl;
+                bit[i] += k;
+            }
+                
+        }
+        int sum(int k) const{
+            //cout << "sum" << endl;
+            int re = 0;
+            for(int i=k;i>0;i-=lowbit(i)) {
+                re += bit[i];
+                //cout << "i:" << i << endl;
+            }
+            return re;
+        }
 };
 
 #endif
